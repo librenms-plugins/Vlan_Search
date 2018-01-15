@@ -85,13 +85,14 @@ if(isset($_POST['search']))
   echo('
   <table class="table table-striped table-condensed table-bordered">
     <tr>
-      <th>Device</th>
+      <th>Device IP</th>
+      <th>Device SysName</th>
       <th>VLANs</th>
       <th>VLAN Names</th>
     </tr>
 ');
 
-  foreach (dbFetchRows("SELECT D.hostname,GROUP_CONCAT(`V`.`vlan_vlan`) AS vlan_vlan,GROUP_CONCAT(`V`.`vlan_name`) AS vlan_name FROM `vlans` AS V JOIN devices AS D ON V.device_id=D.device_id WHERE D.disabled=0 AND D.ignore=0 $vlan_sql $hostname_sql GROUP BY D.hostname") as $vlans)
+  foreach (dbFetchRows("SELECT D.sysName, D.hostname,GROUP_CONCAT(`V`.`vlan_vlan`) AS vlan_vlan,GROUP_CONCAT(`V`.`vlan_name`) AS vlan_name FROM `vlans` AS V JOIN devices AS D ON V.device_id=D.device_id WHERE D.disabled=0 AND D.ignore=0 $vlan_sql $hostname_sql GROUP BY D.hostname") as $vlans)
   {
     $pattern = '/,/';
     $device_vlan_id = preg_replace($pattern,'<br />', $vlans['vlan_vlan']);
@@ -99,6 +100,7 @@ if(isset($_POST['search']))
     echo('
     </tr>
       <td>'.$vlans['hostname'].'</td>
+      <td>'.$vlans['sysName'].'</td>
       <td>'.$device_vlan_id.'</td>
       <td>'.$device_vlan_name.'</td>
     </tr>
