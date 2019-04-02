@@ -98,7 +98,7 @@ if(isset($_POST['search']))
     $device_vlan_name = preg_replace($pattern, '<br />', $vlans['vlan_name']);
     echo('
     </tr>
-      <td>'.$vlans['hostname'].'</td>
+      <td><a href="./device/device='.$vlans['hostname'].'">'.$vlans['hostname'].'</a></td>
       <td>'.$device_vlan_id.'</td>
       <td>'.$device_vlan_name.'</td>
     </tr>
