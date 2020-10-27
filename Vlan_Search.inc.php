@@ -57,6 +57,9 @@ else
       <button type="submit" class="btn btn-default">Search</button>
     </div>
   </div>
+<?php
+print csrf_field();
+?>
 </form>
 
 <?php
