@@ -39,6 +39,7 @@ else
 
 <h4>Search for VLANs</h4>
 <form method="post" name="vlan" id="vlan" role="form" class="form-horizontal">
+<?php echo csrf_field() ?>
   <input type="hidden" name="search" id="search" value="search">
   <div class="form-group">
     <label for="vlans" class="col-sm-3 control-label">Search for VLANs (seperate by commas or new lines)</label>
